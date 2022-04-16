@@ -5,14 +5,10 @@ from bs4 import BeautifulSoup
 from pyowm import OWM
 from pyowm.commons import exceptions
 from transliterate import translit
-from dotenv import load_dotenv
-import os
-load_dotenv()
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-OWM_TOKEN = os.getenv('OWM_TOKEN')
 
-bot = TeleBot(TELEGRAM_TOKEN)
-owm = OWM(OWM_TOKEN)
+
+bot = TeleBot('TOKEN')
+owm = OWM('TOKEN')
 mgr = owm.weather_manager()
 
 
@@ -100,8 +96,9 @@ def send_text(message):
         if data is None:
             bot.send_message(message.chat.id, 'Введите корректное название города.')
         else:
-            output_message = f'Температура сейчас: {data["temp"]}\nМаксимальная температура сегодня: {data["temp_max"]}\n' \
-                      f'Минимальная температура сегодня: {data["temp_min"]}\nОщущается как: {data["feels_like"]}'
+            output_message = f'Температура сейчас: {data["temp"]}\nМаксимальная температура сегодня: ' \
+                             f'{data["temp_max"]}\n'f'Минимальная температура сегодня: ' \
+                             f'{data["temp_min"]}\nОщущается как: {data["feels_like"]}'
             bot.send_message(message.chat.id, output_message)
             bot.send_message(message.chat.id, 'Введите название города, который вас интересует.',
                              reply_markup=keyboard_cities())
@@ -125,5 +122,3 @@ def send_text(message):
 
 
 bot.infinity_polling()
-
-

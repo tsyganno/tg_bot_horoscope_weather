@@ -1,5 +1,5 @@
 import unittest
-from pythonProject.telegram_bot1 import TelegramBot, dialog, get_horoscope, city_weather
+from telegram_bot1 import TelegramBot, dialog, get_horoscope, city_weather
 
 
 class TestStateMachine(unittest.TestCase):
@@ -55,4 +55,3 @@ class TestStateMachine(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
