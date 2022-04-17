@@ -26,7 +26,7 @@ my_bot = TelegramBot()
 
 sign_of_horoscope = ['Овен', 'Телец', 'Близнецы', 'Рак', 'Лев', 'Дева', 'Весы', 'Скорпион', 'Стрелец', 'Козерог',
                      'Водолей', 'Рыбы']
-example_cities = ['Москва', 'Санкт-Петербург', 'Иркутск', 'Улан-Удэ', 'Сочи', 'Краснодар']
+example_cities = ['Москва', 'Санкт-Петербург', 'Иркутск', 'Улан-Удэ', 'Новосибирск', 'Краснодар']
 
 
 def get_horoscope(answer):
@@ -96,9 +96,7 @@ def send_text(message):
         if data is None:
             bot.send_message(message.chat.id, 'Введите корректное название города.')
         else:
-            output_message = f'Температура сейчас: {data["temp"]}\nМаксимальная температура сегодня: ' \
-                             f'{data["temp_max"]}\n'f'Минимальная температура сегодня: ' \
-                             f'{data["temp_min"]}\nОщущается как: {data["feels_like"]}'
+            output_message = f'Температура сейчас: {data["temp"]}\nОщущается как: {data["feels_like"]}'
             bot.send_message(message.chat.id, output_message)
             bot.send_message(message.chat.id, 'Введите название города, который вас интересует.',
                              reply_markup=keyboard_cities())
